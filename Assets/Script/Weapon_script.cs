@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Weapon_script : MonoBehaviour
 {
+    AudioSource audioSource;
     public int amount = 3;
     public Text amountDisplay;
     public GameObject nuclear;
@@ -12,7 +13,7 @@ public class Weapon_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,5 +32,6 @@ public class Weapon_script : MonoBehaviour
     {
         yield return new WaitForSeconds(1.25f);
         Enemy_script.isDestroy = true;
+        audioSource.Play(0);
     }
 }

@@ -6,7 +6,7 @@ public class Spawn_script : MonoBehaviour
 {   
     public Transform[] spawnPosition;
     public GameObject[] enemyPrefabs;
-    public float spawnTime = 2;
+    public float spawnTime = 1;
     private float elapsedTime;
     private float baseSpawnTime;
     // Start is called before the first frame update

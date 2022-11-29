@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Enemy_script : MonoBehaviour
 {
+    AudioSource audioSource;
     public static bool isDestroy;
+    private bool isScore;
+    private bool isRight;
     private Animator animator;
     [SerializeField] private float movementSpeed;
-    private bool isRight;
     private float elapsedTime;
     // Start is called before the first frame update
     void Start()
@@ -30,8 +32,10 @@ public class Enemy_script : MonoBehaviour
         if(gameObject.tag == "Meteor"){
             movementSpeed = 4;
         }
-        isDestroy = false;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        isDestroy = false;
+        isScore = false;
         if (transform.position.x < 0){
             isRight = true;
         }
@@ -56,7 +60,25 @@ public class Enemy_script : MonoBehaviour
     }
     void OnMouseDown()
     {
+        audioSource.Play();
         DestroyObject();
+        
+    }
+    void DestroyObject(){
+        Destroy(gameObject, 1f);
+        if(isScore == false){
+            ScoreCaculator();
+        }
+        movementSpeed = 0;
+        animator.SetBool("destroyed", true);
+    }
+    void OnBecameInvisible() {
+        if(elapsedTime>1){
+            Destroy(gameObject);
+        }
+    }
+    void ScoreCaculator(){
+        isScore = true;
         if(gameObject.tag == "Blue enemy"){
             Score_script.score += 10;
         }
@@ -72,23 +94,13 @@ public class Enemy_script : MonoBehaviour
         {
             Score_script.score += 80;
         }
-        else if(gameObject.tag == "Meteor" && Score_script.score > 0){
+        else if(gameObject.tag == "Meteor" && Score_script.score > 0 && isDestroy == false){
             if(Score_script.score <100){
                 Score_script.score = 0;
             }
             else{
                 Score_script.score -= 100;
             }
-        }
-    }
-    void DestroyObject(){
-        Destroy(gameObject, 1f);
-        movementSpeed = 0;
-        animator.SetBool("destroyed", true);
-    }
-    void OnBecameInvisible() {
-        if(elapsedTime>1){
-            Destroy(gameObject);
         }
     }
 }
