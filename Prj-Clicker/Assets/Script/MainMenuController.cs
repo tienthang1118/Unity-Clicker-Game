@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class MainMenuController : MonoBehaviour
 {
+    public GameObject menuSettingUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +20,14 @@ public class MainMenuController : MonoBehaviour
     public void LoadMenu(){
         SceneManager.LoadScene(sceneName:"Menu");
     }
-    public static void LoadGame(){
+    public void LoadGame(){
         SceneManager.LoadScene(sceneName:"Game");
     }
     public void LoadLevel(){
         // SceneManager.LoadScene(sceneName:"Level");
     }
     public void LoadSetting(){
-        // SceneManager.LoadScene(sceneName:"Setting");
+        menuSettingUI.SetActive(true);
     }
     static public void LoadResult(){
         SceneManager.LoadScene(sceneName:"Result");
@@ -35,3 +37,4 @@ public class MainMenuController : MonoBehaviour
     }
 
 }
+

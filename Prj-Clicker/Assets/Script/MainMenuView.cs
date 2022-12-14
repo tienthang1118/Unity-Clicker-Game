@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MainMenuView : MonoBehaviour
 {
+    public MainMenuController controller;
     void Start()
     {
         
@@ -17,7 +18,11 @@ public class MainMenuView : MonoBehaviour
     }
     public void ClickStartGame()
     {
-        MainMenuController.LoadGame();
+        controller.LoadGame();
+    }
+    public void ClickMenuSetting()
+    {
+        controller.LoadSetting();
     }
 }
 
