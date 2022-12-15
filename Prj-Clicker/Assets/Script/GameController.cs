@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject pauseMenuUI;
     //custom cursor
     public Texture2D cursorTexture;
     //score
@@ -82,6 +83,13 @@ public class GameController : MonoBehaviour
                 elapsedTime = 0;
             }
         }
+    }
+    public void PauseMenu(){
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void BackGame(){
+        pauseMenuUI.SetActive(false);
     }
     public void UseWeapon(){
         weaponAmountDisplay.text = weaponAmount.ToString();

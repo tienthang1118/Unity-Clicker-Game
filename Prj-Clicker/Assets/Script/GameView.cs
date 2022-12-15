@@ -23,4 +23,15 @@ public class GameView : MonoBehaviour
         gameController.UseWeapon();
         
     }
+    public void ClickPauseGame()
+    {
+        Debug.Log("cac");
+        gameController.PauseMenu();
+        
+    }
+    public void ClickBackGame()
+    {
+        gameController.BackGame();
+        
+    }
 }

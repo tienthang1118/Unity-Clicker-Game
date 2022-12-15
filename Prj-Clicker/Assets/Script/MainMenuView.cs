@@ -24,6 +24,9 @@ public class MainMenuView : MonoBehaviour
     {
         controller.LoadSetting();
     }
+    public void ClickBackMenu(){
+        controller.BackMainMenu();
+    }
 }
 
 
